@@ -5,6 +5,11 @@ const app = express()
 
 app.use(express.json())
 
+app.get("/", async (req, res) => {
+
+    return res.json({"message": "hello"})
+})
+
 app.post("/", async (req, res) => {
 
     const {email, link } = req.body
