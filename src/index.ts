@@ -5,12 +5,12 @@ const app = express()
 
 app.use(express.json())
 
-app.get("/", async (req, res) => {
+app.get("/home", async (req, res) => {
 
     return res.json({"message": "hello"})
 })
 
-app.post("/", async (req, res) => {
+app.post("/home", async (req, res) => {
 
     const {email, link } = req.body
     const encurta_link = await prisma.links.create({
