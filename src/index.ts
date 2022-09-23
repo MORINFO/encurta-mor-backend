@@ -23,4 +23,4 @@ app.post("/home", async (req, res) => {
     return res.json(encurta_link)
 })
 
-app.listen(3456, ()=> {console.log('servidor aberto!')})
+app.listen(process.env.PORT, ()=> {console.log('servidor aberto!')})
