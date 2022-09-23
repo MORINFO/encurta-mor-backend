@@ -16,7 +16,10 @@ const express_1 = __importDefault(require("express"));
 const database_1 = __importDefault(require("./database"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get("/home", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    return res.json({ "message": "hello" });
+}));
+app.post("/home", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, link } = req.body;
     const encurta_link = yield database_1.default.links.create({
         data: {
