@@ -19,4 +19,7 @@ app.use(express_1.default.json());
 app.get("/home", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res.json({ "message": "hello" });
 }));
+app.get("/home2", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    return res.json({ "message2": "hello2" });
+}));
 app.listen(process.env.PORT, () => { console.log('servidor aberto!'); });

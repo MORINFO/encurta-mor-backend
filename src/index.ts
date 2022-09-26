@@ -10,4 +10,9 @@ app.get("/home", async (req, res) => {
     return res.json({"message": "hello"})
 })
 
+app.get("/home2", async (req, res) => {
+
+    return res.json({"message2": "hello2"})
+})
+
 app.listen(process.env.PORT, ()=> {console.log('servidor aberto!')})
