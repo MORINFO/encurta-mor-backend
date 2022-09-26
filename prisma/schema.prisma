@@ -23,7 +23,7 @@ model Arquivos {
   nome          String
   email         String @default("public")
   caminho       String
-  Link_download String
+  link_download String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

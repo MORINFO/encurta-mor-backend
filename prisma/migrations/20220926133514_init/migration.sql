@@ -13,7 +13,7 @@ CREATE TABLE "Arquivos" (
     "nome" TEXT NOT NULL,
     "email" TEXT NOT NULL DEFAULT 'public',
     "caminho" TEXT NOT NULL,
-    "Link_download" TEXT NOT NULL,
+    "link_download" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 

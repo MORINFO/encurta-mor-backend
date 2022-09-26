@@ -20,7 +20,7 @@ app.get("/prisma", async (req, res) => {
 
     try {
 
-        let busca_arquivos = await prisma.usuario.findMany()
+        let busca_arquivos = await prisma.arquivos.findMany()
         return res.json(busca_arquivos)
 
     } catch (error) {
