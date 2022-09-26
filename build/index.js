@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("dotenv/config");
+const Prisma_1 = __importDefault(require("./Prisma"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.get("/home", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -21,5 +22,8 @@ app.get("/home", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 app.get("/home2", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res.json({ "message2": "hello2" });
+}));
+app.get("/prisma", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let busca_arquivos = Prisma_1.default.usuario.findMany();
 }));
 app.listen(process.env.PORT, () => { console.log('servidor aberto!'); });
