@@ -8,7 +8,7 @@ app.use(express.json())
 
 app.get("/home", async (req, res) => {
 
-    return res.json({ "message": "hello" })
+    return res.json({ "message": "helloupdate" })
 })
 
 app.get("/home2", async (req, res) => {
