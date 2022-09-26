@@ -11,34 +11,29 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_URL")
 }
 
-model Usuario {
-  id       Int        @id @default(autoincrement())
-  email    String     @unique @default("public")
-  arquivos Arquivos[]
-  links    Links[]
+model Usuarios {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique @default("public")
+  links Links[]
 }
 
-model Arquivos {
-  id               Int    @id @default(autoincrement())
-  nome             String
-  email            String @default("public")
-  caminho          String
-  link_download    String
-  tamanho          String
-  tamanho_completo Int
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  Usuario    Usuario? @relation(fields: [email], references: [email])
+enum tipo {
+  file
+  link
 }
 
 model Links {
-  id            Int    @id @default(autoincrement())
-  nome          String?
-  email         String @default("public")
-  Link_download String
+  id               Int     @id @default(autoincrement())
+  nome             String? @default("")
+  email            String  @default("public")
+  tipo             tipo
+  tamanho          String? @default("")
+  tamanho_completo Int?    @default(0)
+  caminho          String? @default("")
+  link             String
+  link_encurtado   String
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  Usuario    Usuario? @relation(fields: [email], references: [email])
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  usuario    Usuarios? @relation(fields: [email], references: [email])
 }
