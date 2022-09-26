@@ -8,19 +8,28 @@ app.use(express.json())
 
 app.get("/home", async (req, res) => {
 
-    return res.json({"message": "hello"})
+    return res.json({ "message": "hello" })
 })
 
 app.get("/home2", async (req, res) => {
 
-    return res.json({"message2": "hello2"})
+    return res.json({ "message2": "hello2" })
 })
 
-app.get("/prisma", async (req,res) => {
+app.get("/prisma", async (req, res) => {
 
-    let busca_arquivos = await prisma.usuario.findMany()
+    try {
 
-    return res.json(busca_arquivos)
+        let busca_arquivos = await prisma.usuario.findMany()
+        return res.json(busca_arquivos)
+
+    } catch (error) {
+
+        console.log(error)
+        return res.json(error)
+
+    }
+
 })
 
-app.listen(process.env.PORT, ()=> {console.log('servidor aberto!')})
+app.listen(process.env.PORT, () => { console.log('servidor aberto!') })

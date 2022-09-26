@@ -24,6 +24,13 @@ app.get("/home2", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res.json({ "message2": "hello2" });
 }));
 app.get("/prisma", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let busca_arquivos = Prisma_1.default.usuario.findMany();
+    try {
+        let busca_arquivos = yield Prisma_1.default.usuario.findMany();
+        return res.json(busca_arquivos);
+    }
+    catch (error) {
+        console.log(error);
+        return res.json(error);
+    }
 }));
 app.listen(process.env.PORT, () => { console.log('servidor aberto!'); });
