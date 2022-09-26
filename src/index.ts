@@ -1,6 +1,7 @@
 import express from "express";
 import 'dotenv/config'
 import prisma from "./Prisma";
+import Routes from "./Routes";
 
 const app = express()
 
@@ -31,5 +32,7 @@ app.get("/prisma", async (req, res) => {
     }
 
 })
+
+app.use(Routes)
 
 app.listen(process.env.PORT, () => { console.log('servidor aberto!') })
