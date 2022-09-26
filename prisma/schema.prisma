@@ -6,39 +6,39 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_URL")
 }
 
 model Usuario {
   id       Int        @id @default(autoincrement())
-  email    String     @default("public")
+  email    String     @unique @default("public")
   arquivos Arquivos[]
   links    Links[]
 }
 
 model Arquivos {
-  id            Int    @id @default(autoincrement())
-  id_usuario    Int?
-  nome          String
-  email         String @default("public")
-  caminho       String
-  link_download String
+  id               Int    @id @default(autoincrement())
+  nome             String
+  email            String @default("public")
+  caminho          String
+  link_download    String
+  tamanho          String
+  tamanho_completo Int
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  Usuario    Usuario? @relation(fields: [id_usuario], references: [id])
+  Usuario    Usuario? @relation(fields: [email], references: [email])
 }
 
 model Links {
-  id         Int  @id @default(autoincrement())
-  id_usuario Int?
-  nome          String
+  id            Int    @id @default(autoincrement())
+  nome          String?
   email         String @default("public")
-  caminho       String
   Link_download String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  Usuario    Usuario? @relation(fields: [id_usuario], references: [id])
+  Usuario    Usuario? @relation(fields: [email], references: [email])
 }

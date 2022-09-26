@@ -21,8 +21,21 @@ app.get("/prisma", async (req, res) => {
 
     try {
 
-        let busca_arquivos = await prisma.arquivos.findMany()
-        return res.json(busca_arquivos)
+        let busca_usuario = await prisma.usuario.findMany({
+            include: {
+                arquivos: {
+                    orderBy: {
+                        updated_at: "desc"
+                    }
+                },
+                links: {
+                    orderBy: {
+                        updated_at: "desc"
+                    }
+                }
+            }
+        })
+        return res.json(busca_usuario)
 
     } catch (error) {
 
