@@ -22,7 +22,6 @@ export class LinksController {
                 }
             })
 
-            console.log(busca_links)
             return res.json({
                 email: email,
                 links: busca_links?.links.filter(item => item.tipo == 'link'),
@@ -102,11 +101,9 @@ export class LinksController {
                 }
             })
 
-            console.log(cria_link)
             return res.json(cria_link)
 
         } catch (error) {
-            console.log(error)
             return res.status(400).json(error)
         }
     }
