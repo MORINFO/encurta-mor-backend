@@ -18,7 +18,11 @@ export class LinksController {
                     email: email
                 },
                 include:{
-                    links:true
+                    links: {
+                        orderBy: {
+                            id: "desc"
+                        }
+                    }
                 }
             })
 
