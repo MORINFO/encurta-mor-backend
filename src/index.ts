@@ -7,7 +7,9 @@ const app = express()
 
 app.use(express.json())
 
-app.use(cors())
+app.use(cors({
+    origin: ["morinfo.com.br"]
+}))
 
 app.get("/home", async (req, res) => {
 
