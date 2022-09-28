@@ -17,7 +17,7 @@ export class LinksController {
                 where: {
                     email: email
                 },
-                include:{
+                include: {
                     links: {
                         orderBy: {
                             id: "desc"
@@ -123,24 +123,30 @@ export class LinksController {
 
     static async destroy(req: Request, res: Response) {
 
-        let { email, id } = req.body
+        try {
+            let { email, id } = req.body
 
-        let busca_links = await prisma.links.findFirst({
-            where: {
-                id: id,
-                email: email
+            let busca_links = await prisma.links.findFirst({
+                where: {
+                    id: id,
+                    email: email
+                }
+            })
+
+            if (!busca_links) {
+                return res.status(404).json({ "error": "link não encontrado" })
             }
-        })
 
-        if (!busca_links) {
-            
+            await prisma.links.delete({
+                where: {
+                    id: busca_links?.id,
+                }
+            })
+
+            return res.json({ "message": "link deletado" })
+        } catch (error) {
+            return res.status(500)
         }
-
-        await prisma.links.delete({
-            where: {
-                id: busca_links?.id,
-            }
-        })
 
     }
 }
