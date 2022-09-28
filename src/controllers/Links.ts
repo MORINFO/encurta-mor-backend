@@ -124,12 +124,14 @@ export class LinksController {
     static async destroy(req: Request, res: Response) {
 
         try {
-            let { email, id } = req.body
+            let { email, id } = req.query
+
+            console.log(email, id)
 
             let busca_links = await prisma.links.findFirst({
                 where: {
-                    id: id,
-                    email: email
+                    id: Number(id),
+                    email: String(email)
                 }
             })
 
