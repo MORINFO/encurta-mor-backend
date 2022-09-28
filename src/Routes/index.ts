@@ -9,4 +9,6 @@ Routes.get("/links/:email", LinksController.index)
 
 Routes.post("/cria-link", LinksController.store)
 
+Routes.delete("delete-link", LinksController.destroy)
+
 export default Routes
