@@ -56,6 +56,15 @@ export class LinksController {
                 return res.status(404).json({ "error": "link inexistente" })
             }
 
+            prisma.links.update({
+                where: {
+                    id: busca_links.id
+                },
+                data: {
+                    clicks: busca_links.clicks + 1
+                }
+            })
+
             return res.json(busca_links)
 
         } catch (error) {
@@ -110,6 +119,29 @@ export class LinksController {
         } catch (error) {
             return res.status(400).json(error)
         }
+    }
+
+    static async destroy(req: Request, res: Response) {
+
+        let { email, id } = req.body
+
+        let busca_links = await prisma.links.findFirst({
+            where: {
+                id: id,
+                email: email
+            }
+        })
+
+        if (!busca_links) {
+            
+        }
+
+        await prisma.links.delete({
+            where: {
+                id: busca_links?.id,
+            }
+        })
+
     }
 }
 
