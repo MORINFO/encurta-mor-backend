@@ -56,7 +56,7 @@ export class LinksController {
                 return res.status(404).json({ "error": "link inexistente" })
             }
 
-            prisma.links.update({
+            await prisma.links.update({
                 where: {
                     id: busca_links.id
                 },
