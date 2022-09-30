@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,29 +9,32 @@ datasource db {
 }
 
 model Usuarios {
-  id    Int     @id @default(autoincrement())
-  email String  @unique @default("public")
-  links Links[]
+  id         Int      @id @default(autoincrement())
+  email      String   @unique @default("public")
+  links      Links[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Links {
+  id               Int      @id @default(autoincrement())
+  nome             String?  @default("")
+  email            String   @default("public")
+  tipo             tipo
+  tamanho          String?  @default("")
+  tamanho_completo Int?     @default(0)
+  caminho          String?  @default("")
+  link             String
+  link_encurtado   String
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+  clicks           Int      @default(0)
+  usuario          Usuarios @relation(fields: [email], references: [email])
+
+  @@index([email], map: "Links_email_fkey")
 }
 
 enum tipo {
   file
   link
-}
-
-model Links {
-  id               Int     @id @default(autoincrement())
-  nome             String? @default("")
-  email            String  @default("public")
-  tipo             tipo
-  tamanho          String? @default("")
-  tamanho_completo Int?    @default(0)
-  caminho          String? @default("")
-  link             String
-  link_encurtado   String
-  clicks           Int     @default(0)
-
-  created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
-  usuario    Usuarios? @relation(fields: [email], references: [email])
 }
