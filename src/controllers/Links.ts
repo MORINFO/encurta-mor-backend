@@ -61,6 +61,41 @@ export class LinksController {
         }
     }
 
+    static async update(req: Request, res: Response) {
+        try {
+
+            const { link } = req.params
+
+            if (!link) {
+                return res.status(401).json({ "error": "link ausente" })
+            }
+
+            let busca_links = await prisma.links.findFirst({
+                where: {
+                    link_encurtado: link
+                }
+            })
+
+            if (!busca_links) {
+                return res.status(404).json({ "error": "link inexistente" })
+            }
+
+            await prisma.links.update({
+                where: {
+                    id: busca_links.id
+                },
+                data: {
+                    clicks: busca_links.clicks + 1
+                }
+            })
+
+            return res.json({"message": "cliques atualizados!"})
+
+        } catch (error) {
+            return res.status(400).json(error)
+        }
+    }
+
     static async store(req: Request, res: Response) {
 
         try {

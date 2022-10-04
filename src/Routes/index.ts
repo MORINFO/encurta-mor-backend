@@ -5,11 +5,11 @@ import UsersController from "../controllers/Users";
 const Routes = Router()
 
 // ------------- Rotas Links ------------- \\
-Routes.get("/link/:link", LinksController.show)
 Routes.get("/links", LinksController.index)
+Routes.get("/link/:link", LinksController.show)
 Routes.post("/cria-link", LinksController.store)
+Routes.put("/link/:link", LinksController.update)
 Routes.delete("/delete-link", LinksController.destroy)
-
 
 // ------------- Rotas Users ------------- \\
 Routes.get("/users", UsersController.index)
