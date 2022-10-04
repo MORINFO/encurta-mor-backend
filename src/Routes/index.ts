@@ -6,7 +6,7 @@ const Routes = Router()
 
 // ------------- Rotas Links ------------- \\
 Routes.get("/link/:link", LinksController.show)
-Routes.get("/links/:email", LinksController.index)
+Routes.get("/links", LinksController.index)
 Routes.post("/cria-link", LinksController.store)
 Routes.delete("/delete-link", LinksController.destroy)
 
