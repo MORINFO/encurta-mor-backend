@@ -13,6 +13,7 @@ Routes.delete("/delete-link", LinksController.destroy)
 
 // ------------- Rotas Users ------------- \\
 Routes.get("/users", UsersController.index)
+Routes.get("/users/:email", UsersController.show)
 
 
 export default Routes

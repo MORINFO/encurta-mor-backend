@@ -6,33 +6,23 @@ export class LinksController {
     static async index(req: Request, res: Response) {
         try {
 
-            const { email } = req.params
+            const busca_links = await prisma.links.findMany({
+                orderBy: {
+                    created_at: "desc"
+                },
+                take: 100
+            })
 
-            if (!email || email == 'public') {
-                return res.status(401).json({ "error": "email ausente" })
+            if (!busca_links) {
+                return res.status(500).json({ "erro": "erro ao buscar links" })
             }
 
-            let busca_links = await prisma.usuarios.findFirst({
-                where: {
-                    email: email
-                },
-                include: {
-                    links: {
-                        orderBy: {
-                            id: "desc"
-                        }
-                    }
-                }
-            })
 
-            return res.json({
-                email: email,
-                links: busca_links?.links.filter(item => item.tipo == 'link'),
-                files: busca_links?.links.filter(item => item.tipo == 'file')
-            })
+
+            return res.json(busca_links)
 
         } catch (error) {
-            return res.status(400).json(error)
+            return res.status(500).json({ "erro": "erro ao buscar links" })
         }
     }
 
