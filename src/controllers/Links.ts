@@ -131,7 +131,7 @@ export class LinksController {
                     tipo: tipo,
                     nome: nome,
                     link: link,
-                    link_encurtado: Math.random().toString(36).substring(2) + Date.now().toString(36),
+                    link_encurtado: (Math.random().toString(36).substring(2)),
                     tamanho: tamanho,
                     tamanho_completo: tamanho_completo,
                     caminho: caminho
