@@ -24,7 +24,7 @@ model Links {
   tamanho          String?  @default("")
   tamanho_completo Int?     @default(0)
   caminho          String?  @default("")
-  link             String
+  link             String   @db.LongText
   link_encurtado   String
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt

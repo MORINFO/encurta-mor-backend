@@ -125,6 +125,7 @@ export class LinksController {
                 }
             }
 
+            console.log(link)
             const cria_link = await prisma.links.create({
                 data: {
                     email: email,
@@ -141,6 +142,7 @@ export class LinksController {
             return res.json(cria_link)
 
         } catch (error) {
+            console.log(error)
             return res.status(400).json(error)
         }
     }
