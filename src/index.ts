@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 
 app.use(cors({
-    origin: ["https://morinfo.com.br", "https://encurta.morinfo.com.br", "http://localhost:3000", "https://e.morinfo.com.br", "https://em.fly.dev"]
+    origin: ["https://morinfo.com.br", "https://encurta.morinfo.com.br", "http://localhost:3000", "https://e.morinfo.com.br", "https://em.fly.dev", "https://encurta-backend.srv.morinfo.com.br"]
 }))
 
 app.get("/home", async (req, res) => {
