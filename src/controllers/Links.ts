@@ -137,7 +137,6 @@ export class LinksController {
                     caminho: caminho
                 }
             })
-            console.log(cria_link)
 
             return res.json(cria_link)
 
