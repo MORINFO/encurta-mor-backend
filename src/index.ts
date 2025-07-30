@@ -1,7 +1,6 @@
-import 'dotenv/config'
+import 'dotenv/config';
 import express from "express";
 import Routes from "./Routes";
-import cors from "cors"
 
 const app = express()
 
@@ -9,7 +8,7 @@ app.use(express.json())
 
 app.get("/home", async (req, res) => {
 
-    return res.json({ "message": "helloupdate" })
+    return res.json({ "message": "hello" })
 })
 
 app.use(Routes)
