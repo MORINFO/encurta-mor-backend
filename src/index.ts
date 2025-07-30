@@ -19,3 +19,5 @@ app.get("/home", async (req, res) => {
 app.use(Routes)
 
 app.listen(process.env.PORT, () => { console.log('servidor aberto!') })
+
+console.log(process.env)
