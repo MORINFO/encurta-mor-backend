@@ -5,9 +5,10 @@ import Routes from "./Routes";
 
 const app = express()
 
+app.use(cors());
+
 app.use(express.json())
 
-app.use(cors({ origin: ["https://encurta.morinfo.com.br"] }))
 app.get("/home", async (req, res) => {
 
     return res.json({ "message": "helloupdate" })
@@ -15,4 +16,4 @@ app.get("/home", async (req, res) => {
 
 app.use(Routes)
 
-app.listen(process.env.PORT, () => { console.log('servidor aberto!') })
+app.listen(process.env.PORT, () => { console.log('servidor aberto! ' + process.env.PORT) })
