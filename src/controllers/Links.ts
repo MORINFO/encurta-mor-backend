@@ -151,8 +151,6 @@ export class LinksController {
         try {
             let { email, id } = req.query
 
-            console.log(email, id)
-
             let busca_links = await prisma.links.findFirst({
                 where: {
                     id: Number(id),
