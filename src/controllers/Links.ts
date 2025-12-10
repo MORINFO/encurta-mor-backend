@@ -141,7 +141,6 @@ export class LinksController {
             return res.json(cria_link)
 
         } catch (error) {
-            console.log(error)
             return res.status(400).json(error)
         }
     }
